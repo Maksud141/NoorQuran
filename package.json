@@ -1,17 +1,1 @@
-{
-  "name": "tafsimul-quran-premium",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "npx serve .",
-    "android": "npx cap add android && npx cap copy && npx cap open android",
-    "android:setup": "npm install && npx cap add android && npx cap sync android && npx cap open android",
-    "android:sync": "npx cap sync android",
-    "android:run": "npx cap run android"
-  },
-  "dependencies": {
-    "@capacitor/core": "^7.4.0",
-    "@capacitor/cli": "^7.4.0",
-    "@capacitor/android": "^7.4.0"
-  }
-}
+{"name":"noor-quran","version":"3.0.0","private":true,"scripts":{"android":"cap sync android"},"dependencies":{"@capacitor/android":"latest","@capacitor/cli":"latest","@capacitor/core":"latest"}}
