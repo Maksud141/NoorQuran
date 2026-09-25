@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="bn" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#236b1e"><meta name="description" content="নূর কুরআন — কুরআন, অনুবাদ, তাফসীর, অডিও, নামাজ ও কিবলা">
+<title>নূর কুরআন</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <div id="splash" class="splash"><div><div class="splashLogo">☪</div><h1>তাফহীমুল কুরআন</h1><p>কুরআন • তাফসীর • নামাজ</p><button onclick="dismissSplash()">শুরু করুন</button></div></div>
+  <header class="header">
+    <button class="roundBtn" onclick="openDrawer()">☰</button>
+    <div class="brand">তাফহীমুল কুরআন<small>কুরআন মাজীদ ও আধুনিক তাফসীর</small></div>
+    <button class="roundBtn" onclick="navigate('search')">⌕</button>
+  </header>
+  <main id="screen"></main>
+  <nav class="bottomNav">
+    <button data-route="home" onclick="navigate('home')"><b>▰</b><span>হোম</span></button>
+    <button data-route="library" onclick="navigate('library')"><b>▤</b><span>লাইব্রেরি</span></button>
+    <button data-route="favorite" onclick="navigate('favorite')"><b>♥</b><span>ফেভারিট</span></button>
+    <button data-route="prayer" onclick="navigate('prayer')"><b>♧</b><span>নামাজ</span></button>
+    <button data-route="settings" onclick="navigate('settings')"><b>⚙</b><span>সেটিংস</span></button>
+  </nav>
+</div>
+
+<div id="drawer" class="overlay" onclick="if(event.target.id==='drawer')closeDrawer()">
+ <aside class="drawer">
+   <div class="drawerHead"><h2>তাফহীমুল কুরআন</h2><span>নূর কুরআন Premium</span></div>
+   <div class="drawerTitle">তাফহীমুল কুরআন</div>
+   <div class="menu">
+    <button onclick="go('library')">📖 <span>রিয়াদুস সালেহীন</span></button>
+    <button onclick="go('daily')">📚 <span>প্রতিদিন কুরআন - হাদীস</span></button>
+    <button onclick="go('printed')">📕 <span>ছাপা কুরআন</span></button>
+    <button onclick="go('dictionary')">📗 <span>তাফহীম অভিধান</span></button>
+    <button onclick="go('tajweed')">📗 <span>তাজবিদ</span></button>
+    <button onclick="go('document')">📝 <span>ডোনেশন করুন</span></button>
+    <button onclick="go('request')">✉️ <span>Request Submit</span></button>
+   </div>
+   <div class="drawerTitle line">Other</div>
+   <div class="menu">
+    <button onclick="go('settings')">⚙️ <span>Setting</span></button>
+    <button onclick="rateApp()">💬 <span>Rate</span></button>
+    <button onclick="updateApp()">⟳ <span>Update</span></button>
+    <button onclick="shareApp()">↗ <span>Share</span></button>
+    <button onclick="aboutApp()">ⓘ <span>About</span></button>
+    <button onclick="exitApp()">⇥ <span>Exit</span></button>
+   </div>
+ </aside>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()"><div id="modalBox" class="modalBox"></div></div>
+<audio id="player" preload="none"></audio>
+<script src="app.js"></script>
+</body></html>

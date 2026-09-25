@@ -1,0 +1,9 @@
+{
+  "name": "তাফহীমুল কুরআন",
+  "short_name": "তাফহীম কুরআন",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdfdf8",
+  "theme_color": "#236b1e",
+  "lang": "bn"
+}
