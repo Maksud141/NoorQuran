@@ -27,13 +27,17 @@ jobs:
 
       - name: Prepare web assets
         run: |
+          rm -rf www
           mkdir -p www
           cp index.html www/
           cp styles.css www/
           cp app.js www/
           cp manifest.webmanifest www/
 
-      - name: Create Android project
+      - name: Remove old Android folder
+        run: rm -rf android
+
+      - name: Add Android platform
         run: npx cap add android
 
       - name: Sync Capacitor
@@ -41,7 +45,7 @@ jobs:
 
       - name: Build Debug APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: chmod +x gradlew && ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
