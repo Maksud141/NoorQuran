@@ -1,46 +1,27 @@
-# তাফহীমুল কুরআন — Android Build Ready
+# তাফহীমুল কুরআন — v3 Offline Mobile
 
-এই project-টি Capacitor ভিত্তিক Android build-এর জন্য প্রস্তুত। Capacitor-এর official workflow অনুযায়ী web project-এ Android platform যোগ করে sync/open/build করা যায়।
+এই সংস্করণটি v1-এর সবুজ/সাদা mobile design ধরে আরও mobile-first করা হয়েছে।
 
-## প্রয়োজন
-- Node.js LTS
-- Android Studio
-- Android SDK
-- JDK (Android Studio-এর bundled JDK ব্যবহার করা যায়)
+## নতুন
+- IndexedDB offline Quran library
+- Service Worker app shell caching
+- ১১৪ সূরা একসাথে offline download
+- Arabic + বাংলা অনুবাদ + English translation
+- বাংলা শব্দে-শব্দে অর্থ (Quran.com content endpoint; fallback আছে)
+- QuranEnc-এর Bengali Zakaria content থেকে বাংলা অনুবাদ/সংক্ষিপ্ত তাফসীর ও footnotes cache
+- Offline search: ডাউনলোড করা সূরার মধ্যে
+- Per-surah audio caching (ঐচ্ছিক; storage অনেক লাগতে পারে)
+- Font size, dark mode, favorites localStorage
+- Mobile safe-area + full-width bottom navigation
 
-## Windows
-PowerShell/CMD-এ project folder খুলে:
+## Offline কীভাবে কাজ করে
+প্রথমবার internet দিয়ে **সেটিংস → অফলাইন কুরআন লাইব্রেরি → সব ১১৪ সূরা ডাউনলোড** চাপুন। ডেটা IndexedDB-তে থাকবে। এরপর downloaded surahs সাধারণ পড়া, শব্দার্থ, অনুবাদ, সংক্ষিপ্ত তাফসীর ও local search-এর জন্য internet ছাড়াই কাজ করবে।
 
-```bat
-npm install
-npx cap add android
-npx cap sync android
-npx cap open android
-```
+অডিও আলাদা করে সূরা অনুযায়ী cache করা যায়। সব ৬২৩৬টি audio একসাথে cache করলে ফোনে অনেক storage লাগতে পারে।
 
-তারপর Android Studio-তে Gradle sync শেষ হলে:
-**Build → Build Bundle(s) / APK(s) → Build APK(s)**
+## Sources
+- Quran Foundation / Quran.com content for word-by-word data.
+- QuranEnc Bengali Zakaria for Bengali translation/short tafsir-style footnotes. Respect the source's republication terms and version information.
 
-Debug APK সাধারণত:
-`android/app/build/outputs/apk/debug/app-debug.apk`
-
-## Linux/macOS
-```bash
-npm install
-npx cap add android
-npx cap sync android
-npx cap open android
-```
-
-## সরাসরি ফোনে চালানো
-USB debugging চালু করে:
-```bash
-npx cap run android
-```
-
-## App identity
-- App name: তাফহীমুল কুরআন
-- Package ID: `com.noorquran.premium`
-
-## গুরুত্বপূর্ণ
-এই ZIP-এ `android/` generated folder রাখা হয়নি, কারণ Android/Gradle native projectটি আপনার কম্পিউটারে `npx cap add android` দিয়ে তৈরি করাই নির্ভরযোগ্য এবং ছোট ZIP রাখে। একবার command চালালেই `android/` folder তৈরি হবে।
+## Android
+GitHub Actions workflow `.github/workflows/build-apk.yml` দিয়ে debug APK build করা যাবে।
