@@ -1,39 +1,27 @@
-# তাফহীমুল কুরআন — Complete Reference Design App
+# তাফহীমুল কুরআন — v3 Offline Mobile
 
-এই সংস্করণে আপনার দেওয়া screenshots-এর layout language অনুসরণ করে পুরো navigation/app shell তৈরি করা হয়েছে।
+এই সংস্করণটি v1-এর সবুজ/সাদা mobile design ধরে আরও mobile-first করা হয়েছে।
 
-## যেগুলো functional
-- 114 Surah list — API থেকে dynamic
-- Quran reader — Arabic + Bengali + English
-- Ayah bookmark/favorite — localStorage
-- Reading history
-- Quran search
-- Ayah audio — Alafasy CDN
-- Prayer times — AlAdhan
-- Qibla direction API
-- Dark mode
-- Settings
-- Drawer menu-এর screenshot-এর সব major item
-- Share/About/Rate/Update/Exit actions
-- PWA manifest
-- Capacitor Android wrapper configuration
+## নতুন
+- IndexedDB offline Quran library
+- Service Worker app shell caching
+- ১১৪ সূরা একসাথে offline download
+- Arabic + বাংলা অনুবাদ + English translation
+- বাংলা শব্দে-শব্দে অর্থ (Quran.com content endpoint; fallback আছে)
+- QuranEnc-এর Bengali Zakaria content থেকে বাংলা অনুবাদ/সংক্ষিপ্ত তাফসীর ও footnotes cache
+- Offline search: ডাউনলোড করা সূরার মধ্যে
+- Per-surah audio caching (ঐচ্ছিক; storage অনেক লাগতে পারে)
+- Font size, dark mode, favorites localStorage
+- Mobile safe-area + full-width bottom navigation
 
-## Run
-1. `npm install`
-2. `npx serve .`
-3. browser-এ localhost খুলুন।
+## Offline কীভাবে কাজ করে
+প্রথমবার internet দিয়ে **সেটিংস → অফলাইন কুরআন লাইব্রেরি → সব ১১৪ সূরা ডাউনলোড** চাপুন। ডেটা IndexedDB-তে থাকবে। এরপর downloaded surahs সাধারণ পড়া, শব্দার্থ, অনুবাদ, সংক্ষিপ্ত তাফসীর ও local search-এর জন্য internet ছাড়াই কাজ করবে।
 
-## Android APK
-Android Studio/SDK লাগবে:
-`npx cap add android`
-`npx cap copy`
-`npx cap open android`
-তারপর Android Studio থেকে APK/AAB build করুন।
+অডিও আলাদা করে সূরা অনুযায়ী cache করা যায়। সব ৬২৩৬টি audio একসাথে cache করলে ফোনে অনেক storage লাগতে পারে।
 
-## Production note
-Quran Foundation-এর current API documentation অনুযায়ী production Content APIs backend credentials ব্যবহার করে Quran/translation/tafsir content দেয়। এই project-এর base reader AlQuran.cloud-এর open REST API ব্যবহার করে, আর production-grade tafsir/user-sync যোগ করতে backend adapter দরকার। API sources:
-- Quran Foundation docs: https://api-docs.quran.com/
-- AlQuran.cloud docs: https://alquran.cloud/api
-- AlAdhan prayer/qibla docs: https://aladhan.com/prayer-times-api
+## Sources
+- Quran Foundation / Quran.com content for word-by-word data.
+- QuranEnc Bengali Zakaria for Bengali translation/short tafsir-style footnotes. Respect the source's republication terms and version information.
 
-Prayer calculation times may differ from a local mosque; production app-এ location/method/tuning settings রাখা উচিত.
+## Android
+GitHub Actions workflow `.github/workflows/build-apk.yml` দিয়ে debug APK build করা যাবে।
